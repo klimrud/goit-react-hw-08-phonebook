@@ -1,8 +1,10 @@
 import React from 'react';
 
+
 const HomePage = () => {
   return (
     <>
+    
       <div
         style={{
           height: '100vh',
@@ -15,6 +17,7 @@ const HomePage = () => {
       >
         !PHONE BOOK!
       </div>
+     
     </>
   );
 };

@@ -23,7 +23,7 @@ export const Footer = () => {
           color: '#fff'
         }}
       >
-        {new Date().getFullYear()} © Contacts App
+        {new Date().getFullYear()} 
         @ruda
       </Typography>
     </Container>
