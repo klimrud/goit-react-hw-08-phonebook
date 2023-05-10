@@ -4,16 +4,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
+import { UserMenu } from 'components/UserMenu/UserMenu';
 
 // const navItems = ['Sing Up', 'Log in', 'Contacts'];
-export const ToolBar = () => {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+export const ToolBar = ({ onClick }) => {
+  // const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerToggle = () => {
-    console.log(mobileOpen)
-    setMobileOpen(prevState => !prevState);
-  };
+  // const handleDrawerToggle = () => {
+  //   console.log(mobileOpen);
+  //   setMobileOpen(prevState => !prevState);
+  // };
 
   return (
     <>
@@ -22,8 +23,7 @@ export const ToolBar = () => {
         color="inherit"
         aria-label="open drawer"
         edge="start"
-        
-        onClick={handleDrawerToggle}
+        onClick={onClick}
         sx={{ mr: 2, display: { sm: 'none' } }}
       >
         <MenuIcon />
@@ -32,8 +32,9 @@ export const ToolBar = () => {
         variant="h6"
         component="div"
         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-      ><NavLink className="nav-link" to="/" end>
-        HOME
+      >
+        <NavLink className="nav-link" to="/" end>
+          HOME
         </NavLink>
       </Typography>
       <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -45,24 +46,19 @@ export const ToolBar = () => {
           </Button>
         ))} */}
 
-         
-          <Button  sx={{ color: '#fff' }}>
-            <NavLink to="contacts" >
-            Contacts
-            </NavLink>
-          </Button>
-          <Button  sx={{ color: '#fff' }}>
-            <NavLink to="register">
-            Sing Up
-            </NavLink>
-          </Button>
-          <Button  sx={{ color: '#fff' }}>
-            <NavLink to="login">
-            Log in
-            </NavLink>
-          </Button>
+        <Button sx={{ color: '#fff' }}>
+          {/* <Link to="contacts"  sx={{ color: '#FFD700' }}  > */}
+          Contacts
+          {/* </Link> */}
+        </Button>
 
-
+        <Button sx={{ color: '#fff' }}>
+          <NavLink to="register">Sing Up</NavLink>
+        </Button>
+        <Button sx={{ color: '#fff' }}>
+          <NavLink to="login">Log in</NavLink>
+        </Button>
+        <UserMenu />
       </Box>
     </>
   );

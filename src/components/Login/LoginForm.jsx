@@ -1,44 +1,122 @@
+
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import { DialogActions, Button } from '@mui/material';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
+// import Link from '@mui/material/Link';
+// import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { logIn } from 'store/auth/auth-operations';
+
+
+const theme = createTheme();
 
 export const LoginForm = () => {
-
-  console.error('error');
-  return (
+  const dispatch = useDispatch();
   
-    <Box component="form"
-      sx={{
-        display: 'block',
-        alignItems: 'center',
-        '& > :not(style)': { m: 1 },
-      }}
-    >
-      <TextField
-        helperText="Please enter your name"
-        id="demo-helper-text-aligned"
-        label="User name"
-        variant="outlined"
-        // fullWidth
-        // margin="normal"
-        // error={!!errors.name}
-        // helperText={errors?.name?.message}
-      />
-      <TextField
-        helperText="Please enter your password"
-        id="demo-helper-text-aligned"
-        label="password"
-      />
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-<DialogActions>
-        <Button type="sabmit">Cancel</Button>
-        <Button type="submit" variant="contained">
-          Create
-        </Button>
-      </DialogActions>
-    </Box>
+  const handleChange = ({ target: { name, value } }) => {
+    console.log('target', value);
+    switch (name) {
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        return;
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
+    console.log('first', logIn);
+    dispatch(logIn({  email, password }));
     
-   
+    setEmail('');
+    setPassword('');
+
+
+
+  };
+
+  return (
+    <ThemeProvider theme={theme} >
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: '#4682B4'  }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Log In
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={email}
+              onChange={handleChange}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={handleChange}
+            />
+            {/* <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            /> */}
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2,  bgcolor: '#4682B4' }}
+            >
+              Login
+            </Button>
+           
+             
+        
+          </Box>
+        </Box>
+       
+      </Container>
+    </ThemeProvider>
   );
 }
