@@ -7,22 +7,27 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 
 import { DrawerAppBar } from './Drawer';
-import { ToolBar } from './Toolbar';
+import { ToolBar } from './ToolbBar';
+
+import { useState } from 'react';
 
 export const Header = props => {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     console.log('yes');
-    setMobileOpen(prevState => !prevState);
+    setMobileOpen((prevState )=> !prevState);
   };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <
+      Box 
+     sx={{ display: 'flex' }}
+    >
       <CssBaseline />
       <AppBar
         component="nav"
@@ -34,17 +39,18 @@ export const Header = props => {
           <ToolBar onClick={handleDrawerToggle} />
         </Toolbar>
       </AppBar>
-      <Box component="nav">
+      <Box>
         <DrawerAppBar
           onClose={handleDrawerToggle}
           open={mobileOpen}
           container={container}
         />
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
-      </Box>
-    </Box>
+    
+   
+    </
+     Box
+    >
   );
 };
 

@@ -15,7 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { logIn } from 'store/auth/auth-operations';
+import authOperations from 'store/auth/auth-operations';
 
 
 const theme = createTheme();
@@ -40,13 +40,9 @@ export const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
-    console.log('first', logIn);
-    dispatch(logIn({  email, password }));
+   
+    
+    dispatch(authOperations.logIn({ email, password }));
     
     setEmail('');
     setPassword('');
@@ -70,7 +66,7 @@ export const LoginForm = () => {
           <Avatar sx={{ m: 1, bgcolor: '#4682B4'  }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" sx={{color:'#2F4F4F'}} >
             Log In
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>

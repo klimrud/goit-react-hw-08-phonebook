@@ -1,57 +1,3 @@
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
-// import { DialogActions, Button } from '@mui/material';
-
-// export const RegisterForm = () => {
-
-//   console.error('regi');
-//   return (
-
-//     <Box component="form"
-//       sx={{
-//         display: 'block',
-//         alignItems: 'center',
-//         '& > :not(style)': { m: 1 },
-//       }}
-//     >
-//       <TextField
-//         helperText="Please enter your User name"
-//         id="demo-helper-text-aligned"
-//         label="User name"
-//         variant="outlined"
-//         // fullWidth
-//         // margin="normal"
-//         // error={!!errors.name}
-//         // helperText={errors?.name?.message}
-//       />
-
-//       <TextField
-//         helperText="Please enter your email"
-//         id="demo-helper-text-aligned"
-//         label="Email"
-//         variant="outlined"
-//         // fullWidth
-//         // margin="normal"
-//         // error={!!errors.name}
-//         // helperText={errors?.name?.message}
-//       />
-//       <TextField
-//         helperText="Please enter your password"
-//         id="demo-helper-text-aligned"
-//         label="password"
-//       />
-
-// <DialogActions>
-//         <Button type="sabmit">Cancel</Button>
-//         <Button type="submit" variant="contained">
-//           Create
-//         </Button>
-//       </DialogActions>
-//     </Box>
-
-//   );
-// }
 
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -69,7 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { register } from 'store/auth/auth-operations';
+import authOperations from 'store/auth/auth-operations';
 
 const theme = createTheme();
 
@@ -80,7 +26,7 @@ export const RegisterForm = () => {
   const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
-    console.log('target', value);
+    // console.log('target', value);
     switch (name) {
       case 'name':
         return setName(value);
@@ -94,13 +40,17 @@ export const RegisterForm = () => {
   };
   const handleSubmit = event => {
     event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
-    console.log('first', register);
-    dispatch(register({ name, email, password }));
+    const form = event.currentTarget;
+    dispatch(
+      authOperations.register({
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    // form.reset();
+    // dispatch(authOperations.register({ name, email, password }));
+
     setName('');
     setEmail('');
     setPassword('');
@@ -121,7 +71,7 @@ export const RegisterForm = () => {
           <Avatar sx={{ m: 1, bgcolor: '#4682B4' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" sx={{color:'#2F4F4F'}} >
             Sign up
           </Typography>
           <Box
@@ -133,12 +83,13 @@ export const RegisterForm = () => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
+                type='text'
+                  // autoComplete="given-name"
                   name="name"
                   required
                   fullWidth
                   id="name"
-                  label="First Name"
+                  label=" Name"
                   autoFocus
                   value={name}
                   onChange={handleChange}
@@ -147,6 +98,7 @@ export const RegisterForm = () => {
 
               <Grid item xs={12}>
                 <TextField
+                 type='email'
                   required
                   fullWidth
                   id="email"
@@ -159,6 +111,7 @@ export const RegisterForm = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                 
                   required
                   fullWidth
                   name="password"

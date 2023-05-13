@@ -1,0 +1,25 @@
+.containers{
+  height: 100vh;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: #FFD700;
+  margin-top: 100px;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: 	 #FFD700;
+}
+
+.text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color:#2F4F4F;
+}

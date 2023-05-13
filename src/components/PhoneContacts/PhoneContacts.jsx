@@ -1,8 +1,9 @@
 import { ContactForm } from 'components/ContactForm/ContactForm';
-import { Filter } from '@mui/icons-material';
+// import { Filter } from '@mui/icons-material';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Toaster, toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
+import {Filter} from 'components/Filter/Filter'
 
 import { filterChange } from 'store/filter/slice';
 import {

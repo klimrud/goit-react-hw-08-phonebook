@@ -58,7 +58,7 @@ export const DrawerAppBar = ({handleDrawerToggle,mobileOpen, container,onClick})
       }}
       sx={{
         display: { xs: 'block', sm: 'none' },
-        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+        '&& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
       }}
     >
       {drawer}

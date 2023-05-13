@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-
-import css from 'components/ContactForm/ContactForm.module.css';
 import { useDispatch } from 'react-redux';
 
 import { getPhoneContacts } from 'store/phone/thunks';
+
+import css from 'components/ContactForm/ContactForm.module.css';
+
 
 export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
