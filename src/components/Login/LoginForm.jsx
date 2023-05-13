@@ -15,7 +15,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import authOperations from 'store/auth/auth-operations';
+import  { logIn } from 'store/auth/auth-operations';
+
 
 
 const theme = createTheme();
@@ -42,7 +43,7 @@ export const LoginForm = () => {
     event.preventDefault();
    
     
-    dispatch(authOperations.logIn({ email, password }));
+    dispatch(logIn({ email, password }));
     
     setEmail('');
     setPassword('');
@@ -98,6 +99,8 @@ export const LoginForm = () => {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
+
+
             <Button
               type="submit"
               fullWidth

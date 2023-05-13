@@ -15,7 +15,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import authOperations from 'store/auth/auth-operations';
+import  { register } from 'store/auth/auth-operations';
+
 
 const theme = createTheme();
 
@@ -40,16 +41,8 @@ export const RegisterForm = () => {
   };
   const handleSubmit = event => {
     event.preventDefault();
-    const form = event.currentTarget;
-    dispatch(
-      authOperations.register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    // form.reset();
-    // dispatch(authOperations.register({ name, email, password }));
+   
+     dispatch(register({ name, email, password }));
 
     setName('');
     setEmail('');
@@ -86,10 +79,10 @@ export const RegisterForm = () => {
                 type='text'
                   // autoComplete="given-name"
                   name="name"
-                  required
+                  // required
                   fullWidth
                   id="name"
-                  label=" Name"
+                  label="Name"
                   autoFocus
                   value={name}
                   onChange={handleChange}
@@ -132,6 +125,8 @@ export const RegisterForm = () => {
                 />
               </Grid> */}
             </Grid>
+
+        
             <Button
               type="submit"
               fullWidth

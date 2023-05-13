@@ -52,11 +52,7 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 });
 
-// // Persisting token field from auth slice to localstorage
-// const authPersistConfig = {
-//   key: 'auth',
-//   storage,
-//   whitelist: ['token'],
-// };
+
+
 
 export const persistor = persistStore(store);
