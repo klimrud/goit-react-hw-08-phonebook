@@ -28,7 +28,7 @@ export const LoginForm = () => {
   const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
-    console.log('target', value);
+    // console.log('target', value);
     switch (name) {
       case 'email':
         return setEmail(value);
@@ -42,14 +42,10 @@ export const LoginForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
    
-    
-    dispatch(logIn({ email, password }));
+    dispatch(logIn({ email, password  }));
     
     setEmail('');
     setPassword('');
-
-
-
   };
 
   return (
@@ -70,7 +66,7 @@ export const LoginForm = () => {
           <Typography component="h1" variant="h5" sx={{color:'#2F4F4F'}} >
             Log In
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} autoComplete="off" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required

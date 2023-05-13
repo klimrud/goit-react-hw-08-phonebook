@@ -3,7 +3,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-
 // const setAuthHeader = token => {
 //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 // };
@@ -12,32 +11,28 @@ axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 //   axios.defaults.headers.common.Authorization = '';
 // };
 
-
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization= `Bearer ${token}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
-  unset(){
-    axios.defaults.headers.common.Authorization= '';
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
   },
-
 };
 
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-
-
 
 // Post @ /users/signup
 // body:{name,email,password}
 // если успешно => добавляем tocen в НТТРзаголовок
 
-export const register = createAsyncThunk('auth/register', async (credentials) => {
+export const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const response = await axios.post('/users/signup', credentials);
-      // setAuthHeader(response.data.tocen)
-      token.set(response.data.token);
-    console.log('data', response.data)
-    return response.data;
+    const { data } = await axios.post('/users/signup', credentials);
+    // setAuthHeader(response.data.tocen)
+    token.set(data.token);
+    console.log('data', data);
+    return data;
   } catch (error) {
     if (error.response) {
       // Запрос был сделан, и сервер ответил кодом состояния, который
@@ -64,10 +59,10 @@ export const register = createAsyncThunk('auth/register', async (credentials) =>
 
 export const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const response = await axios.post('/users/login', credentials);
-  //  setAuthHeader(response.data.tocen)
-  token.set(response.data.token);
-    return response.data;
+    const { data } = await axios.post('/users/login', credentials);
+    //  setAuthHeader(response.data.tocen)
+    token.set(data.token);
+    return data;
   } catch (error) {
     console.log('error-login', error);
     // error.response.data
@@ -78,7 +73,7 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
 //headers: Authorization: Bearer token
 // если успешно login=> удаляем tocen в НТТРзаголовок
 
-export  const logOut = createAsyncThunk('auth/logout', async (body) => {
+export const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.post('/users/logout');
     //  clearAuthHeader();
@@ -87,7 +82,6 @@ export  const logOut = createAsyncThunk('auth/logout', async (body) => {
     console.log('error-logout', error);
   }
 });
-
 
 // const authOperations = {
 //   register,
