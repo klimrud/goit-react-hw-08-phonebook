@@ -1,11 +1,11 @@
 import { ContactForm } from 'components/ContactForm/ContactForm';
-// import { Filter } from '@mui/icons-material';
-import { ContactList } from 'components/ContactList/ContactList';
-import { Toaster, toast } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
-import {Filter} from 'components/Filter/Filter'
 
-import { filterChange } from 'store/filter/slice';
+import { ContactList } from 'components/ContactList/ContactList';
+import {  toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+// import {Filter} from 'components/Filter/Filter'
+
+// import { filterChange } from 'store/filter/slice';
 import {
   createPhoneContacts,
   deletePhoneContacts,
@@ -17,7 +17,7 @@ import css from 'components/Filter/Filter.module.css';
 
 export const PhoneContacts = () => {
   const { items, isLoading, error } = useSelector(state => state.contacts);
-  const { filter } = useSelector(state => state.filter);
+  // const { filter } = useSelector(state => state.filter);
 
   const dispatch = useDispatch();
 
@@ -45,20 +45,20 @@ export const PhoneContacts = () => {
     }
   };
 
-  const changeFilter = filter => {
-    dispatch(filterChange(filter));
-  };
+  // const changeFilter = filter => {
+  //   dispatch(filterChange(filter));
+  // };
 
-  const filteredContacts = () => {
-    if (filter) {
-      const visibleFriends = items.filter(el =>
-        el.name.toLowerCase().includes(filter.toLowerCase().trim())
-      );
-      return visibleFriends;
-    } else {
-      return items;
-    }
-  };
+  // const filteredContacts = () => {
+  //   if (filter) {
+  //     const visibleFriends = items.filter(el =>
+  //       el.name.toLowerCase().includes(filter.toLowerCase().trim())
+  //     );
+  //     return visibleFriends;
+  //   } else {
+  //     return items;
+  //   }
+  // };
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -75,14 +75,16 @@ export const PhoneContacts = () => {
 
       <h2 className={css.title}>Contacts</h2>
 
-      {items.length>1 && <Filter filter={filter} onChange={changeFilter} />}
-      {items.length>0 ? (
-        <ContactList contacts={filteredContacts()} onDelete={removeContact} />
-      ) : (
+      {/* {items.length>1 && <Filter filter={filter} onChange={changeFilter} />} */}
+      {/* {items.length>0 ? ( */}
+        <ContactList 
+        // contacts={filteredContacts()}
+         onDelete={removeContact} />
+      {/* ) : (
         <p className="title">No contacts</p>
-      )}
+      )} */}
 
-      <Toaster
+      {/* <Toaster
         position="top-left"
         reverseOrder={false}
         gutter={8}
@@ -106,7 +108,7 @@ export const PhoneContacts = () => {
             },
           },
         }}
-      />
+      /> */}
     </div>
   );
 };

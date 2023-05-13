@@ -26,6 +26,9 @@ export const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  
+
+
   const handleChange = ({ target: { name, value } }) => {
     // console.log('target', value);
     switch (name) {

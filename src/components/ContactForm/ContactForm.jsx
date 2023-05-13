@@ -23,7 +23,7 @@ export const ContactForm = ({ onSubmit }) => {
 
     dispatch(getPhoneContacts());
     onSubmit({ id: nanoid(), name, phone });
-
+console.log('nane', name)
     setName('');
     setNumber('');
   };

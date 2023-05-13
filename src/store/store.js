@@ -15,8 +15,9 @@ import storage from 'redux-persist/lib/storage';
 import { reducerContacts } from './reducer';
 import { authReducer } from './auth/auth-slice';
 
+
 // const persistConfig = {
-//   key: 'root',
+//   key: 'root', ,
 //   storage,
 //   blacklist: ['filter', /'auth'/],
 // };
@@ -32,7 +33,7 @@ const middleware =[
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'filter'],
 };
 
 //  const persistedReducer = persistReducer(persistConfig, rootReducer);

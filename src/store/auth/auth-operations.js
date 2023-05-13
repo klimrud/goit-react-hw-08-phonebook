@@ -28,11 +28,11 @@ const token = {
 
 export const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const { data } = await axios.post('/users/signup', credentials);
+    const response = await axios.post('/users/signup', credentials);
     // setAuthHeader(response.data.tocen)
-    token.set(data.token);
-    console.log('data', data);
-    return data;
+    token.set(response.data.token);
+    console.log('data', response.data);
+    return response.data;
   } catch (error) {
     if (error.response) {
       // Запрос был сделан, и сервер ответил кодом состояния, который
@@ -59,10 +59,10 @@ export const register = createAsyncThunk('auth/register', async credentials => {
 
 export const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
+    const response = await axios.post('/users/login', credentials);
     //  setAuthHeader(response.data.tocen)
-    token.set(data.token);
-    return data;
+    token.set(response.data.token);
+    return response.data;
   } catch (error) {
     console.log('error-login', error);
     // error.response.data
