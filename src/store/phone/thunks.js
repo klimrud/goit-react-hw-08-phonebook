@@ -15,6 +15,7 @@ export const getPhoneContacts = createAsyncThunk(
 export const createPhoneContacts = createAsyncThunk(
   'contacts/addContact',
   async data => {
+    console.log('data-addCont', data)
     await addContact(data);
 
     return data;
@@ -24,6 +25,7 @@ export const createPhoneContacts = createAsyncThunk(
 export const deletePhoneContacts = createAsyncThunk(
   'contacts/deleteContact',
   async id => {
+    console.log('id', id)
     return await deleteContact(id);
   }
 );

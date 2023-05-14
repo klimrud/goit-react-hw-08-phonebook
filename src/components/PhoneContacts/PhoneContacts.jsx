@@ -1,23 +1,26 @@
 import { ContactForm } from 'components/ContactForm/ContactForm';
-
 import { ContactList } from 'components/ContactList/ContactList';
-import {  toast } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
-// import {Filter} from 'components/Filter/Filter'
-
+import { Filter } from 'components/Filter/Filter';
 // import { filterChange } from 'store/filter/slice';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+import { toast } from 'react-hot-toast';
+
 import {
   createPhoneContacts,
   deletePhoneContacts,
   getPhoneContacts,
 } from 'store/phone/thunks.js';
-import { useEffect } from 'react';
 
 import css from 'components/Filter/Filter.module.css';
+import { filterChange } from 'store/filter/slice';
 
 export const PhoneContacts = () => {
-  const { items, isLoading, error } = useSelector(state => state.contacts);
-  // const { filter } = useSelector(state => state.filter);
+  const { contacts, isLoading, error } = useSelector(state => state.contacts);
+
+  const filter = useSelector(state => state.filter);
 
   const dispatch = useDispatch();
 
@@ -27,9 +30,12 @@ export const PhoneContacts = () => {
 
   const createContact = contact => {
     if (
-      items.some(el => el.name === contact.name && el.phone === contact.phone)
+      contacts.some(
+        el => el.name === contact.name && el.number === contact.number
+      )
+      //  items.some(el => el.name === contact.name && el.number === contact.number)
     ) {
-      toast.success(`${contact.name} is already in contacts`);
+      return toast.success(`${contact.name} is already in contacts`);
     } else {
       dispatch(createPhoneContacts(contact));
     }
@@ -45,20 +51,22 @@ export const PhoneContacts = () => {
     }
   };
 
-  // const changeFilter = filter => {
-  //   dispatch(filterChange(filter));
-  // };
+  const changeFilter = filter => {
+    dispatch(filterChange(filter));
+  };
 
-  // const filteredContacts = () => {
-  //   if (filter) {
-  //     const visibleFriends = items.filter(el =>
-  //       el.name.toLowerCase().includes(filter.toLowerCase().trim())
-  //     );
-  //     return visibleFriends;
-  //   } else {
-  //     return items;
-  //   }
-  // };
+  const filteredContacts = () => {
+    if (filter) {
+      // const visibleFriends = items.filter(el =>
+      const visibleFriends = contacts.filter(el =>
+        el.name.toLowerCase().includes(filter.toLowerCase().trim())
+      );
+      return visibleFriends;
+    } else {
+      //  return contacts;
+      //  return items;
+    }
+  };
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -75,40 +83,14 @@ export const PhoneContacts = () => {
 
       <h2 className={css.title}>Contacts</h2>
 
-      {/* {items.length>1 && <Filter filter={filter} onChange={changeFilter} />} */}
-      {/* {items.length>0 ? ( */}
-        <ContactList 
-        // contacts={filteredContacts()}
-         onDelete={removeContact} />
-      {/* ) : (
-        <p className="title">No contacts</p>
-      )} */}
-
-      {/* <Toaster
-        position="top-left"
-        reverseOrder={false}
-        gutter={8}
-        containerClassName=""
-        containerStyle={{}}
-        toastOptions={{
-          // Define default options
-          className: '',
-          duration: 5000,
-          style: {
-            background: 'rgb(47, 155, 255)',
-            color: '#fff',
-          },
-
-          // Default options for specific types
-          success: {
-            duration: 3000,
-            theme: {
-              primary: 'green',
-              secondary: 'black',
-            },
-          },
-        }}
-      /> */}
+      {/* {contacts.length>1 && */}
+      <Filter filter={filter} onChange={changeFilter} />
+      {/* }
+      {contacts.length>0 ? (  */}
+      <ContactList contacts={filteredContacts()} onDelete={removeContact} />
+      {/* ) : (  */}
+      <p className="title">No contacts</p>
+      {/* )}  */}
     </div>
   );
 };

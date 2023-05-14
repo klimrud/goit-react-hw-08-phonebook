@@ -4,7 +4,7 @@ import { IoTrashBin } from 'react-icons/io5';
 
 import css from 'components/ContactList/ContactList.module.css';
 
-export const ContactList = ({ contacts = [], onDelete }) => {
+export const ContactList = ({ contacts=[] , onDelete }) => {
   return (
     <section>
       <div className={css.contactContainer}>
@@ -12,11 +12,11 @@ export const ContactList = ({ contacts = [], onDelete }) => {
         <h3 className={css.contactHead}>Number</h3>
       </div>
       <ul className={css['contacts-list']}>
-        {contacts.map(({ id, name, phone }) => (
+        {contacts.map(({ id, name, number }) => (
           <li key={id} className={css.item}>
             <p className={css.contactTitle}>{name}</p>
-            <a className={css.contactLink} href={'tel:' + phone}>
-              {phone}
+            <a className={css.contactLink} href={'tel:' + number}>
+              {number}
             </a>
             <button
               type="click"
@@ -39,8 +39,8 @@ ContactList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
   onDelete: PropTypes.func.isRequired,
 };

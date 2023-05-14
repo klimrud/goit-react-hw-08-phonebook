@@ -1,29 +1,30 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
+
 
 import { getPhoneContacts } from 'store/phone/thunks';
 
 import css from 'components/ContactForm/ContactForm.module.css';
 
-
 export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
-  const [phone, setNumber] = useState('');
+  const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'name') setName(value);
-    else if (name === 'phone') setNumber(value);
+    else if (name === 'number') setNumber(value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
     dispatch(getPhoneContacts());
-    onSubmit({ id: nanoid(), name, phone });
-console.log('nane', name)
+
+     onSubmit({ id: nanoid(), name, number });
+ 
     setName('');
     setNumber('');
   };
@@ -53,11 +54,11 @@ console.log('nane', name)
           </label>
           <input
             type="tel"
-            name="phone"
+            name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             onChange={handleChange}
-            value={phone}
+            value={number}
             placeholder="999-99-99"
             required
           />

@@ -24,7 +24,7 @@
 
 
 
-// -----------Создайте новую задачу 
+// -----------Создайте новый контакт
 // const addContact = {
 //   content: 'Check out mockapi.io',
 //   completed: false,

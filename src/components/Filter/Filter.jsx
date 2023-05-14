@@ -5,7 +5,7 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import css from 'components/Filter/Filter.module.css';
 
 export const Filter = ({ filter, onChange }) => {
-  console.log('first')
+  console.log('first' , filter)
   return (
     <div>
       <div className={css.filterContainer}>
@@ -27,6 +27,6 @@ export const Filter = ({ filter, onChange }) => {
 };
 
 Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
+  filter: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };

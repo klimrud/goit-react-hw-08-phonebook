@@ -5,6 +5,11 @@ import { createSlice } from '@reduxjs/toolkit';
 const filterSlice = createSlice({
   name: 'filter',
   initialState: initialStateFilter,
+//   extraReducers: {
+//   [filterChange.fulfilled](state, action) {
+//     state.filter = action.payload;
+//   }
+// },
   reducers: {
     filterChange(state, action) {
       return {

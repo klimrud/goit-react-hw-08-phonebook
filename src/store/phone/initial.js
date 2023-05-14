@@ -1,5 +1,6 @@
 export const initialStatePhone = {
-  items: [],
+  contacts: [],
+  // items: [],
   isLoading: false,
   error: null,
 };
