@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -15,15 +14,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import  { logIn } from 'store/auth/auth-operations';
-
-
+import { logIn } from 'store/auth/auth-operations';
 
 const theme = createTheme();
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -39,17 +36,21 @@ export const LoginForm = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
-   
-    dispatch(logIn({ email, password  }));
-    
+
+    dispatch(logIn({ email, password }))
+      .unwrap()
+      .then(() => {
+        console.log('email', email);
+      });
+
     setEmail('');
     setPassword('');
   };
 
   return (
-    <ThemeProvider theme={theme} >
+    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -60,13 +61,19 @@ export const LoginForm = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: '#4682B4'  }}>
+          <Avatar sx={{ m: 1, bgcolor: '#4682B4' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5" sx={{color:'#2F4F4F'}} >
+          <Typography component="h1" variant="h5" sx={{ color: '#2F4F4F' }}>
             Log In
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} autoComplete="off" noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            autoComplete="off"
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -96,22 +103,17 @@ export const LoginForm = () => {
               label="Remember me"
             /> */}
 
-
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2,  bgcolor: '#4682B4' }}
+              sx={{ mt: 3, mb: 2, bgcolor: '#4682B4' }}
             >
               Login
             </Button>
-           
-             
-        
           </Box>
         </Box>
-       
       </Container>
     </ThemeProvider>
   );
-}
+};

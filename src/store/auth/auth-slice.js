@@ -28,11 +28,11 @@ export const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
     },
-    [getCurrentUser.fulfilled](state, action) {
+  [getCurrentUser.fulfilled](state, action) {
       console.log('data', action)
-       state.user = action.payload;
-       state.isLoggedIn = true;
-    },
+    //    state.user = action.payload;
+    //    state.isLoggedIn = true;
+     },
   },
 });
 

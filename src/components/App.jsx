@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout.jsx/Layout';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from 'store/auth/auth-operations';
+// import PrivateRoute from './PrivateRoute';
+// import PublicRoute from './PublicRoute';
 // import HomePage from 'pages/HomePage';
 // import ContactsPage from 'pages/ContactsPage';
 // import LoginPage from 'pages/LoginPage';
@@ -16,9 +18,9 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 export const App = () => {
   const dispatch = useDispatch();
 
- useEffect(() =>{ 
-  dispatch(getCurrentUser());
- },[dispatch]);
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
 
   return (
     <>
@@ -28,9 +30,23 @@ export const App = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
+          {/* <PublicRoute index>
+            <HomePage />
+          </PublicRoute>
+
+          <PublicRoute path="/register">
+            <RegisterPage />
+          </PublicRoute>
+          <PublicRoute path="/login">
+            <LoginPage />
+          </PublicRoute>
+
+          <PrivateRoute path="/contacts">
+            <ContactsPage />
+          </PrivateRoute> */}
         </Route>
         <Route path="*" element={<HomePage />} />
-      </Routes>   
+      </Routes>
     </>
   );
 };

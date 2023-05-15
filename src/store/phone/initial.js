@@ -1,5 +1,5 @@
 export const initialStatePhone = {
-  contacts: [],
+  contacts: [], 
   // items: [],
   isLoading: false,
   error: null,

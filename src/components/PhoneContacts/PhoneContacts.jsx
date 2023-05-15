@@ -61,9 +61,10 @@ export const PhoneContacts = () => {
       const visibleFriends = contacts.filter(el =>
         el.name.toLowerCase().includes(filter.toLowerCase().trim())
       );
+      console.log('first', visibleFriends)
       return visibleFriends;
     } else {
-      //  return contacts;
+        //  return contacts;
       //  return items;
     }
   };
@@ -85,10 +86,10 @@ export const PhoneContacts = () => {
 
       {/* {contacts.length>1 && */}
       <Filter filter={filter} onChange={changeFilter} />
-      {/* }
-      {contacts.length>0 ? (  */}
+     {/* } 
+     {contacts.length>0 ? (  */}
       <ContactList contacts={filteredContacts()} onDelete={removeContact} />
-      {/* ) : (  */}
+       {/* ) : (  */}
       <p className="title">No contacts</p>
       {/* )}  */}
     </div>

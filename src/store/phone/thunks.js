@@ -8,6 +8,7 @@ import {
 export const getPhoneContacts = createAsyncThunk(
   'contacts/fetchAll',
   async () => {
+    
     return await fetchContacts();
   }
 );

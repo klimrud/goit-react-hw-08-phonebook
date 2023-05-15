@@ -35,3 +35,15 @@ export const deleteContact = async id => {
   console.log('error-deleteContacts', error);
   
 }};
+
+
+// Update an existing contact
+export const patchContact = async id => {
+  try{
+  const { data } = await axios.patch(`/contacts/${id}`);
+
+  return data;
+} catch (error) {
+  console.log('error-patchContacts', error);
+  
+}};

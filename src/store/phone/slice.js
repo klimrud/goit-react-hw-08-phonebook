@@ -32,13 +32,16 @@ const handleFulfilledGet = (state, action) => {
 };
 
 const handleFulfilledCreate = (state, action) => {
-  state.contacts.push(action.payload);
+  console.log('action', action)
+
+   state.contacts.push(action.payload);
   // state.items.push(action.payload);
 };
 
 const handleFulfilledDelete = (state, action) => {
-
-  state.contacts = state.contacts.filter(contact => contact.id !== action.payload.id);
+  state.contacts = state.contacts.filter(
+    contact => contact.id !== action.payload.id
+  );
   // state.items = state.items.filter(contact => contact.id !== action.payload.id);
 };
 
@@ -53,7 +56,6 @@ export const phoneSlice = createSlice({
   extraReducers: builder => {
     const { PENDING, FULFILLED, REJECTED } = STATUS;
     builder
-
       .addCase(getPhoneContacts.fulfilled, handleFulfilledGet)
       .addCase(createPhoneContacts.fulfilled, handleFulfilledCreate)
       .addCase(deletePhoneContacts.fulfilled, handleFulfilledDelete)
