@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 
 
-import { createPhoneContacts, getPhoneContacts } from 'store/phone/thunks';
+import { createPhoneContacts } from 'store/phone/thunks';
 
 import css from 'components/ContactForm/ContactForm.module.css';
 
