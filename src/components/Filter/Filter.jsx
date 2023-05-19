@@ -4,8 +4,8 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 
 import css from 'components/Filter/Filter.module.css';
 
-export const Filter = ({ filter, onChange }) => {
-  console.log('first' , filter)
+export const Filter = ({ filters, onChange }) => {
+  // console.log('filter', filters);
   return (
     <div>
       <div className={css.filterContainer}>
@@ -15,7 +15,7 @@ export const Filter = ({ filter, onChange }) => {
           className={css.filterInput}
           type="text"
           name="name"
-          value={filter}
+          value={filters}
           onChange={e => onChange(e.currentTarget.value)}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -27,6 +27,6 @@ export const Filter = ({ filter, onChange }) => {
 };
 
 Filter.propTypes = {
-  filter: PropTypes.string,
+  filters: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };

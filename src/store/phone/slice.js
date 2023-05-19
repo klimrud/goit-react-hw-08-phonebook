@@ -27,22 +27,15 @@ const handleFulfilled = (state, action) => {
 };
 
 const handleFulfilledGet = (state, action) => {
-  state.contacts = action.payload;
-  // state.items = action.payload;
+  state.items = action.payload;
 };
 
 const handleFulfilledCreate = (state, action) => {
-  console.log('action', action)
-
-   state.contacts.push(action.payload);
-  // state.items.push(action.payload);
+  state.items.push(action.payload);
 };
 
 const handleFulfilledDelete = (state, action) => {
-  state.contacts = state.contacts.filter(
-    contact => contact.id !== action.payload.id
-  );
-  // state.items = state.items.filter(contact => contact.id !== action.payload.id);
+  state.items = state.items.filter(contact => contact.id !== action.payload.id);
 };
 
 const handleRejected = (state, action) => {

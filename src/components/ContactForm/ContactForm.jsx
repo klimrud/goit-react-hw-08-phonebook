@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 
 import { nanoid } from 'nanoid';
 
-
 import { createPhoneContacts } from 'store/phone/thunks';
 
 import css from 'components/ContactForm/ContactForm.module.css';
@@ -22,11 +21,12 @@ export const ContactForm = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // dispatch(getPhoneContacts());
-     dispatch(createPhoneContacts({id:nanoid(),  name, number })).unwrap().then(()=>console.log('contacts', name));
+    dispatch(createPhoneContacts({ id: nanoid(), name, number }))
+      .unwrap()
+      .then(() => console.log('contacts', name));
     //  onSubmit({ id: nanoid(), name, number });
- 
-     setName('');
+
+    setName('');
     setNumber('');
   };
 

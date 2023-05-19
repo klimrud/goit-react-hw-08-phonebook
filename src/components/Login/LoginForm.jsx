@@ -15,11 +15,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { logIn } from 'store/auth/auth-operations';
+// import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,7 +45,8 @@ export const LoginForm = () => {
       .unwrap()
       .then(() => {
         console.log('email', email);
-      });
+      })
+      // .unwrap().then(()=> navigate('/') );
 
     setEmail('');
     setPassword('');

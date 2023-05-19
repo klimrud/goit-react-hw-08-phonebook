@@ -2,9 +2,12 @@
 
  const getUserName = state => state.auth.user.name;
 
+ const getRefreshingUser = state => state.auth.isLoading;
+
 const authSelectors = {
   getIsLoggedIn,
   getUserName,
+  getRefreshingUser
 };
 
-export default authSelectors;
+ export default authSelectors;

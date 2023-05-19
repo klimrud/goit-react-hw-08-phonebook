@@ -11,7 +11,7 @@ axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 //   axios.defaults.headers.common.Authorization = '';
 // };
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -65,6 +65,7 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
     return response.data;
   } catch (error) {
     console.log('error-login', error);
+    // return thunkAPI.rejectWithValue(error.message);
     // error.response.data
   }
 });
@@ -76,7 +77,7 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
 export const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.post('/users/logout');
-    //  clearAuthHeader();
+  // clearAuthHeader();
     token.unset();
   } catch (error) {
     console.log('error-logout', error);
@@ -88,32 +89,26 @@ export const logOut = createAsyncThunk('auth/logout', async () => {
 export const getCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    console.log('thunk', thunkAPI.getState());
+    
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-   console.log('token', token) 
-   
-//      if (persistedToken === null) {
-//       console.log('токена нет')
-//        return thunkAPI.rejectWithValue();
-//       //  return state;
-//       // return;
-//      }
-      token.set(persistedToken);
-//      try{
-//      const {data} = await axios.get('/users/current')
-//      console.log('data', data)
-//      return data;
-//      }catch(error){
-// console.log('error', error)
-//      }
- }
+    // console.log('token', token);
+
+    if (persistedToken === null) {
+      console.log('токена нет');
+      return thunkAPI.rejectWithValue();
+      //  return state;
+      // return;
+    }
+    token.set(persistedToken);
+    try {
+      const { data } = await axios.get('/users/current');
+      // console.log('data', data);
+      return data;
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
 );
 
-// const authOperations = {
-//   register,
-//   // logOut,
-//    logIn,
-//   // fetchCurrentUser,
-// };
-// export default authOperations;
+

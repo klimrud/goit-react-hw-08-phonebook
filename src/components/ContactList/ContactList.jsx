@@ -5,7 +5,7 @@ import { IoTrashBin } from 'react-icons/io5';
 import css from 'components/ContactList/ContactList.module.css';
 
 export const ContactList = ({ contacts=[] , onDelete }) => {
-  console.log('contacts', contacts)
+ 
   return (
     <section>
       <div className={css.contactContainer}>
