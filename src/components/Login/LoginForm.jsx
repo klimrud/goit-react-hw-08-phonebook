@@ -1,33 +1,30 @@
 import * as React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
-// import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+
 import { logIn } from 'store/auth/auth-operations';
-// import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
-    // console.log('target', value);
     switch (name) {
       case 'email':
         return setEmail(value);
@@ -43,10 +40,7 @@ export const LoginForm = () => {
 
     dispatch(logIn({ email, password }))
       .unwrap()
-      .then(() => {
-        console.log('email', email);
-      })
-      // .unwrap().then(()=> navigate('/') );
+      .then(() => navigate('/contacts'));
 
     setEmail('');
     setPassword('');
@@ -58,7 +52,7 @@ export const LoginForm = () => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 18,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -101,10 +95,6 @@ export const LoginForm = () => {
               value={password}
               onChange={handleChange}
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
 
             <Button
               type="submit"

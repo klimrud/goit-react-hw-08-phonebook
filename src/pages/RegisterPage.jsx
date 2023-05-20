@@ -1,19 +1,21 @@
 import React from 'react';
-import { RegisterForm } from 'components/Register/RegisterForm'
+import { RegisterForm } from 'components/Register/RegisterForm';
 
 const RegisterPage = () => {
   return (
     <>
-      <div  style={{
+      <div
+        style={{
           height: '100vh',
           display: 'block',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 40,
           color: '#010101',
-        }}>Sind Up
-         <RegisterForm />
-        </div>
+        }}
+      >
+        <RegisterForm />
+      </div>
     </>
   );
 };

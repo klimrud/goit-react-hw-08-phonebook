@@ -4,7 +4,6 @@ import { initialStateFilter } from './initial';
 const filterSlice = createSlice({
   name: 'filter',
   initialState: initialStateFilter,
-  //  initialState:'',
 
   reducers: {
     filterChange(state, action) {

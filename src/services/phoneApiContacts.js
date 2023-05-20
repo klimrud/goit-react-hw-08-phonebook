@@ -2,30 +2,27 @@ import axios from 'axios';
 import { token } from '../store/auth/auth-operations';
 import { toast } from 'react-toastify';
 
-// const PROJECT_TOKEN = `6452c9f3a2860c9ed41522df`;
-
-// axios.defaults.baseURL = `https://${PROJECT_TOKEN}.mockapi.io/api/v1/`;
-
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 export const fetchContacts = async () => {
   try {
     const { data } = await axios.get('/contacts');
-    // console.log('data', data)
+
     return data;
   } catch (error) {
     console.log('error-getContacts', error);
+    return toast.error('contact not received');
   }
 };
 
 export const addContact = async contact => {
   try {
     const { data } = await axios.post(`/contacts`, contact);
-    // console.log('data', data)
+
     token.set(data.token);
     return data;
   } catch (error) {
-    return toast.success(`${contact.name} is already in contacts`);
+    return toast.error('contact not added');
   }
 };
 
@@ -35,8 +32,7 @@ export const deleteContact = async id => {
 
     return data;
   } catch (error) {
-    // console.log('error-deleteContacts', error);
-    return toast.success(`is  delete in contacts`);
+    return toast.error('contact not deleted');
   }
 };
 
@@ -46,7 +42,5 @@ export const patchContact = async id => {
     const { data } = await axios.patch(`/contacts/${id}`);
 
     return data;
-  } catch (error) {
-    console.log('error-patchContacts', error);
-  }
+  } catch (error) {}
 };

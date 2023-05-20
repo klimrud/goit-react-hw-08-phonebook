@@ -1,8 +1,6 @@
 import * as React from 'react';
-// import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
-
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
@@ -11,29 +9,23 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
-// import { NavLink } from 'react-router-dom';
-
 const drawerWidth = 240;
 const navItems = ['Sing Up', 'Log in', 'Contacts'];
 
-export const DrawerAppBar = ({handleDrawerToggle,mobileOpen, container,onClick}) => {
-  // const { window } = props;
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  // const handleDrawerToggle = () => {
-  //   console.log('yes')
-  //   setMobileOpen(prevState => !prevState);
-  // };
-
+export const DrawerAppBar = ({
+  handleDrawerToggle,
+  mobileOpen,
+  container,
+  onClick,
+}) => {
   const drawer = (
     <Box onClick={onClick} sx={{ textAlign: 'center' }}>
-      {/* <NavLink variant="h6" to="/" sx={{ my: 2 }}> */}
       <Typography variant="h6" sx={{ my: 2 }}>
         HOME
-        </Typography>
-      {/* </NavLink> */}
+      </Typography>
+
       <Divider />
-      <List >
+      <List>
         {navItems.map(item => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
@@ -44,8 +36,6 @@ export const DrawerAppBar = ({handleDrawerToggle,mobileOpen, container,onClick})
       </List>
     </Box>
   );
-  // const container =
-  //   window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Drawer
@@ -65,11 +55,3 @@ export const DrawerAppBar = ({handleDrawerToggle,mobileOpen, container,onClick})
     </Drawer>
   );
 };
-
-// DrawerAppBar.propTypes = {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * You won't need it on your project.
-//    */
-//   window: PropTypes.func,
-// };

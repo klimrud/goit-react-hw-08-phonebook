@@ -1,17 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { nanoid } from 'nanoid';
-
-import { createPhoneContacts } from 'store/phone/thunks';
 
 import css from 'components/ContactForm/ContactForm.module.css';
 
 export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
-  const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'name') setName(value);
@@ -21,10 +16,7 @@ export const ContactForm = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(createPhoneContacts({ id: nanoid(), name, number }))
-      .unwrap()
-      .then(() => console.log('contacts', name));
-    //  onSubmit({ id: nanoid(), name, number });
+    onSubmit({ id: nanoid(), name, number });
 
     setName('');
     setNumber('');

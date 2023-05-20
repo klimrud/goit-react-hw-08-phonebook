@@ -1,24 +1,15 @@
-// import { useSelector } from 'react-redux';
-// // import { Navigate } from "react-router-dom";
-// // import { Route, Redirect } from 'react-router-dom';
-// import { Route} from 'react-router-dom';
-// import * as  Redirect from 'react-router-dom';
-// import authSelectors from 'store/auth/auth-selectors';
+const { useSelector } = require('react-redux');
+const { Navigate, useLocation } = require('react-router-dom');
 
-// export default function PublicRoute({
-//   children,
-//   restricted = false,
-//   ...routerProps
-// }) {
-//   // const isAuth = useSelector((state)=> state.auth.token)
-//   // return !isAuth? children: <Navigate to ='/' />;
+const PublicRoute = ({ children }) => {
+  const isAuth = useSelector(state => state.auth.token);
+  const location = useLocation();
 
-//   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-//   const shouldRedirect = isLoggedIn && restricted;
-//   console.log('shouldRedirect', shouldRedirect);
-//   return (
-//     <Route {...routerProps}>
-//       {shouldRedirect ? <Redirect to="/" /> : children}
-//     </Route>
-//   );
-// }
+  return !isAuth ? (
+    children
+  ) : (
+    <Navigate to={location.state ? location.state : '/'} />
+  );
+};
+
+export default PublicRoute;
