@@ -3,9 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout.jsx/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUser } from 'store/auth/auth-operations';
-// import PrivateRoute from './PrivateRoute';
-// import PublicRoute from './PublicRoute';
+
 import authSelectors from 'store/auth/auth-selectors';
+// import PublicRoute from './PublicRoute';
+// import { PrivateRoute } from './PrivateRoute';
 
 // import HomePage from 'pages/HomePage';
 // import ContactsPage from 'pages/ContactsPage';
@@ -28,7 +29,7 @@ export const App = () => {
 
   return (
     // isRefreshingUser && (
-    <>
+    <> 
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -42,7 +43,7 @@ export const App = () => {
           <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
           <Route path="/contacts" element={<PrivateRoute><ContactsPage /></PrivateRoute>} /> */}
 
-          {/* 
+{/*           
            <PublicRoute exact path="/" restricted>
           <Layout />
         
@@ -68,6 +69,8 @@ export const App = () => {
 
         <Route path="*" element={<HomePage />} />
       </Routes>
+
+
     </>
     // )
   );

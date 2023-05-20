@@ -1,3 +1,4 @@
-export const initialState = {
-  filters: '',
+export const initialStateFilter = {
+ 
+  filter: '',
 }

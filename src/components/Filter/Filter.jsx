@@ -1,11 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { BiSearchAlt2 } from 'react-icons/bi';
+import { filterChange } from 'store/filter/slice';
 
 import css from 'components/Filter/Filter.module.css';
 
-export const Filter = ({ filters, onChange }) => {
-  // console.log('filter', filters);
+export const Filter = () => {
+  const [value, setValue] = useState('');
+  const dispatch = useDispatch();
+
+  const handleFilterChange = e => {
+    setValue(e.target.value);
+    dispatch(filterChange(e.target.value));
+  };
   return (
     <div>
       <div className={css.filterContainer}>
@@ -15,8 +23,8 @@ export const Filter = ({ filters, onChange }) => {
           className={css.filterInput}
           type="text"
           name="name"
-          value={filters}
-          onChange={e => onChange(e.currentTarget.value)}
+          value={value}
+          onChange={handleFilterChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
@@ -26,7 +34,3 @@ export const Filter = ({ filters, onChange }) => {
   );
 };
 
-Filter.propTypes = {
-  filters: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-};

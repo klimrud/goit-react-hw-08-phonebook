@@ -5,5 +5,5 @@ import { phoneReducer } from './phone/slice';
 
 export const reducer = combineReducers({
   contacts: phoneReducer,
-  filters: filterReducer,
+  filter: filterReducer,
 });
