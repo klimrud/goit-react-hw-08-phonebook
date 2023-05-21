@@ -13,7 +13,7 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { toast } from 'react-hot-toast';
 
-import css from 'components/Filter/Filter.module.css';
+import css from 'components/PhoneContacts/PhoneContacts.module.css';
 
 export const PhoneContacts = () => {
   const { items, isLoading, error } = useSelector(state => state.contacts);
@@ -70,13 +70,14 @@ export const PhoneContacts = () => {
       <h2 className={css.title}>Phone book</h2>
       <ContactForm onSubmit={createContact} />
 
-      <h2 className={css.title}>Contacts</h2>
-
       {items.length > 2 && <Filter />}
       {items.length > 0 ? (
-        <ContactList contacts={filteredContacts} onDelete={removeContact} />
+        <>
+          <h2 className={css.title}>Contacts</h2>
+          <ContactList contacts={filteredContacts} onDelete={removeContact} />
+        </>
       ) : (
-        <p className="title">No contacts</p>
+        <p className={css.title}>No contacts</p>
       )}
     </div>
   );

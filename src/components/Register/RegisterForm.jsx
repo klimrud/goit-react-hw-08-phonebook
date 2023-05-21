@@ -42,7 +42,7 @@ export const RegisterForm = () => {
 
     dispatch(register({ name, email, password }))
       .unwrap()
-      .then(() => navigate('/'));
+      .then(() => navigate('/contacts'));
 
     setName('');
     setEmail('');
