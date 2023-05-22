@@ -21,9 +21,10 @@ export const Footer = () => {
       component="footer"
       sx={{
         py: 2,
+        bottom:0,
         borderTop: '1px solid #eaeaea',
         backgroundColor: '#4682B4',
-        marginTop: 20,
+        marginTop: 80,
       }}
     >
       <Container maxWidth="xl">
